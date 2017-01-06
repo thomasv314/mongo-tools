@@ -48,7 +48,7 @@ func ConvertJSONValueToBSON(x interface{}) (interface{}, error) {
 		}
 		return v, nil
 
-	case string, float64, int32, int64:
+	case string, float64, int32, int64, bson.Symbol:
 		return v, nil // require no conversion
 
 	case json.ObjectId: // ObjectId
@@ -309,7 +309,7 @@ func GetBSONValueAsJSON(x interface{}) (interface{}, error) {
 		}
 		return out, nil
 
-	case string:
+	case string, bson.Symbol:
 		return v, nil // require no conversion
 
 	case int:
